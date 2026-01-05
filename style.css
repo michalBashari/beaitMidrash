@@ -1,0 +1,327 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-star {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.4;
+    animation: starFloat 8s ease-in-out infinite;
+}
+
+.floating-star:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.floating-star:nth-child(2) { top: 20%; right: 15%; animation-delay: 1.5s; }
+.floating-star:nth-child(3) { top: 60%; left: 5%; animation-delay: 3s; }
+.floating-star:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 4.5s; }
+.floating-star:nth-child(5) { top: 80%; left: 20%; animation-delay: 6s; }
+.floating-star:nth-child(6) { top: 40%; right: 5%; animation-delay: 7.5s; }
+
+@keyframes starFloat {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.4; }
+    25% { transform: translateY(-15px) scale(1.2); opacity: 0.8; }
+    50% { transform: translateY(-30px) scale(0.8); opacity: 0.6; }
+    75% { transform: translateY(-15px) scale(1.1); opacity: 0.9; }
+}
+
+.main-container {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.logo-section {
+    margin-bottom: 3rem;
+    animation: slideDown 1s ease-out;
+}
+
+.logo-wrapper {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.logo-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.logo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.logo-wrapper:hover .logo-overlay {
+    opacity: 1;
+}
+
+.logo-overlay span {
+    color: white;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.content-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    animation: slideUp 1s ease-out 0.3s both;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.donation-info {
+    margin-bottom: 2rem;
+}
+
+.donation-text, .donor-text {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.recipient-name, .donor-name {
+    font-weight: bold;
+    color: #667eea;
+    border-bottom: 2px solid #667eea;
+    padding: 0.2rem 0.5rem;
+    min-width: 100px;
+    display: inline-block;
+}
+
+.name-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255,255,255,0.8);
+}
+
+.name-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 10px rgba(102,126,234,0.3);
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 90%;
+    animation: popIn 0.3s ease;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.popup-header h2 {
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.popup-content {
+    padding: 2rem;
+}
+
+.popup-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2rem;
+    transition: border-color 0.3s ease;
+}
+
+.popup-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.save-btn, .cancel-btn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+}
+
+.cancel-btn {
+    background: #f5f5f5;
+    color: #666;
+}
+
+.cancel-btn:hover {
+    background: #e0e0e0;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .content-card {
+        padding: 2rem;
+        margin: 1rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .donation-text, .donor-text {
+        font-size: 1.1rem;
+    }
+    
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+}
