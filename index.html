@@ -29,14 +29,12 @@
         <div class="content-card">
             <h1 class="title">תרומת אוכל</h1>
             <div class="donation-info">
-                <p class="donation-text">
+                <!-- <p class="donation-text">
                     האוכל נתרם עבור: <span class="recipient-name" id="recipientName">_______</span>
-                </p>
-                <p class="donor-text">
-                    מאת: <span class="donor-name" id="donorName">_______</span>
-                </p>
+                </p> -->
+                <div class="donor-info" id="donorInfo"></div>
             </div>
-            <input type="text" id="nameInput" placeholder="הכנס שם המקבל" class="name-input">
+            <!-- <input type="text" id="nameInput" placeholder="הכנס שם המקבל" class="name-input"> -->
         </div>
     </div>
 
@@ -44,13 +42,14 @@
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup">
             <div class="popup-header">
-                <h2>עריכת שם התורם</h2>
+                <h2>עריכת פרטי התרומה</h2>
                 <button class="close-btn" onclick="closePopup()">×</button>
             </div>
             <div class="popup-content">
                 <input type="text" id="donorInput" placeholder="הכנס שם התורם" class="popup-input">
+                <input type="text" id="fromInput" placeholder="מאת (ארגון/משפחה)" class="popup-input">
                 <div class="popup-buttons">
-                    <button class="save-btn" onclick="saveDonorName()">שמור</button>
+                    <button class="save-btn" onclick="saveDonationInfo()">שמור</button>
                     <button class="cancel-btn" onclick="closePopup()">ביטול</button>
                 </div>
             </div>
